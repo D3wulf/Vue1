@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>VueJs</title>
+</head>
+<body>
+    <div></div>
+    <div id="app">
+
+
+        <h1 > {{mayusTexto}}
+        </h1>
+
+        <!-- Usar clases de forma dinamica -->
+        <h2 class="bg-dark"
+            :class="colorCantidad">
+            
+            
+            {{ "Mi saldo disponible es: " + cantidad}} 
+        
+        
+        </h2>
+        <!-- V-bind no se usan las dobles llaves, se añaden dos puntos a la propiedad-->
+        <a :href="enlace">Probamos en enlace</a>
+
+        <hr>
+        <!-- V-if y Vif-else-->
+        <h2 v-if="estado"> Cuenta activa  </h2>
+        <h2 v-else> Cuenta desactivada</h2>
+
+        <hr>
+
+        <h2 v-if="cantidad>500">Cantidad : {{cantidad}}</h2>
+        <h2 v-else-if=" cantidad<= 500 && cantidad > 0"> Cantidad : 
+            <span style="color: red;">{{cantidad}}</span>
+        </h2>
+        <h2 v-else>Sin pastuca</h2>
+
+        <!--  v-for -->
+
+        <hr>
+
+        <h2> Servicios del banco</h2>
+        <ul>
+            <!-- para coger el indice y marcarlo saldria una lista numerada-->
+            <li v-for="(datos,index) in servicios" :key="index">{{index +1}}.  {{datos}}</li>
+
+
+        </ul>
+
+        <hr>
+        <!-- Evento onlick -->
+        <button v-on:click="agregarSaldo">Agregar Saldo</button>
+        <!-- abreviado!-->
+        <!-- añadido el disabled para desactivar boton-->
+        <button @click="disminuirSaldo" :disabled="desactivar">Quitar Saldo</button>
+        <!-- bindeamos el valor en el footer con el main-->
+       <footer-vue :valor="cantidad"
+                    fecha= "febrero 2021"/>
+
+
+    </div>
+    <script src="main.js"></script>
+    <script src="footer.js"></script>
+    <!-- montar la app de vue el nombre mounted es aleatorio-->
+    <script>const mountedApp = app.mount('#app'); </script>
+</body>
+</html>
